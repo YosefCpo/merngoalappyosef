@@ -5,9 +5,17 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontd && npm run build --prefix frontend"
+		"build": "cd frontend && npm run build",
+		"install-client": "cd frontend && npm install",
+		"heroku-postbuild": "npm run install-frontend && npm run build",
+		"server": "cd backend && nodemon server.js",
+		"develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\"",
+		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\""
 	},
 	"keywords": [],
 	"author": "",
-	"license": "ISC"
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "^7.2.2"
+	}
 }
