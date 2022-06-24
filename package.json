@@ -2,12 +2,12 @@
 	"name": "goalfullstackappmyown",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "cd frontend && npm run build",
 		"install-client": "cd frontend && npm install",
-		"heroku-postbuild": "npm run install-frontend && npm run build",
+		"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend",
 		"server": "cd backend && nodemon server.js",
 		"develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\"",
 		"start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix frontend\""
